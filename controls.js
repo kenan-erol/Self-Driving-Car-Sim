@@ -25,7 +25,6 @@ class Controls{
                     this.forward=true;
                     break;
             }
-            console.table(this);
         }
 
         document.onkeyup=(event)=>{
@@ -44,7 +43,6 @@ class Controls{
                     break;
             }
 
-            console.table(this);
         }
     }
 }

@@ -10,12 +10,16 @@ class Car {
         this.maxSpeed=5;
         //friction
         this.friction=0.05;
-
+        this.angle=0; // for car turning
 
         this.controls = new Controls();
     }
     
     update(){
+        this.#move();
+    }
+
+    #move(){
         // car movement
         if(this.controls.forward){
             this.speed+=this.acceleration;
@@ -49,26 +53,43 @@ class Car {
         }
 
         // movement in the x axis
-        if(this.controls.left){
-            this.x-=2;
+        if(this.speed!=0){
+            // backwards or forward determiner
+            var flip = 0;
+            if(this.speed>0){
+                flip = 1
+            } else {
+                flip = -1
+            }
+            if(this.controls.left){
+                this.angle+=0.032; // can be improved to be more real world accurate
+            }
+
+            if(this.controls.right){
+                this.angle-=0.032;
+            }
         }
 
-        if(this.controls.right){
-            this.x+=2;
-        }
-
-        this.y-=this.speed;
+        // turn speed implementation
+        this.x-=Math.sin(this.angle)*this.speed;
+        this.y-=Math.cos(this.angle)*this.speed;
+    
     }
     
     draw(ctx) {
         // initializing car
+        ctx.save();
+        ctx.translate(this.x,this.y);
+        ctx.rotate(-this.angle);
         ctx.beginPath();
         ctx.rect(
-            this.x-this.width/2,
-            this.y-this.height/2,
+            -this.width/2,
+            -this.height/2,
             this.width,
             this.height
         )
         ctx.fill();
+
+        ctx.restore(); // allows for constant reeval of car position
     }
 }
