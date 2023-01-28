@@ -11,12 +11,16 @@ class Road {
         // infinite roads
 
         /* may need to redefine infinity
-        if it works just use Infinity
-        const infinity = 10013904102401240;
-        */
+        if it works just use Infinity 
+        
+        Update: using built in Infinity does not allow to draw lanes.
 
-        this.top=-Infinity;
-        this.bottom=Infinity;
+        */
+        const infinity = 10013904102401240; // big num
+        
+
+        this.top=-infinity;
+        this.bottom=infinity;
 
     }
 
@@ -24,19 +28,29 @@ class Road {
         // lane line generator
         ctx.lineWidth=5;
         ctx.strokeStyle="white";
-        ctx.beginPath();
-        ctx.moveTo(this.left, this.top);
-        ctx.lineTo(this.left, this.bottom);
-        ctx.stroke();
 
-        ctx.beginPath();
-        ctx.moveTo(this.right, this.top);
-        ctx.lineTo(this.right, this.bottom);
-        ctx.stroke();
+        for(let i=0; i<=this.laneCount; i++){
+            // lane values between left and right
+            const z=lerp(
+                this.left,
+                this.right,
+                i/this.laneCount
+            );
+
+            ctx.beginPath();
+            ctx.moveTo(z, this.top);
+            ctx.lineTo(z, this.bottom);
+            ctx.stroke();
+        }
+        
     }
 
+    
 
 
 
+}
 
+function lerp(A,B,t){
+    return A+(B-A)*t;
 }
