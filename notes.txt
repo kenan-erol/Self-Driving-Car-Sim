@@ -1,0 +1,26 @@
+Prof James Xi Zheng from Macquarie University
+
+In China the specific vehicle needs to get a license same with autonomous driving?
+
+We want to get the corner/edge cases for safer driving
+
+THERE IS A NEED FOR BETTER SIMULATION PLATFORMS AS CURRENT ONES ONLY USE LOW-LEVEL APIS
+
+Camera and sensor outputs
+
+Inputs:
+
+Multidoule autonomous driving system (ADS)
+- LIDAR
+- Camera
+- IMU
+Calculate a vector that shows how similar the driving situation the car is currently in is to a previous dirivng condition
+
+Baidu Apollo 5.0
+Using NLP to understand traffic rules
+
+Waymo uses multi sensor fusion
+MSF robustness
+
+zero sum learning for new road signs like "right turn from left only"
+
